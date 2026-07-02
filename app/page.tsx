@@ -1,31 +1,27 @@
+import Link from "next/link";
+
+import { Button } from "@/components/ui/button";
+
 export default function Home() {
     return (
-        <main className="flex min-h-screen items-center justify-center bg-slate-950 text-white">
-            <div className="text-center">
-                <h1 className="text-6xl font-bold">
-                    SupportHub
+        <main className="flex min-h-screen items-center justify-center bg-background px-6 py-12 text-foreground">
+            <div className="max-w-xl text-center">
+                <p className="text-sm font-medium uppercase tracking-[0.3em] text-primary">SupportHub</p>
+                <h1 className="mt-3 text-4xl font-semibold tracking-tight sm:text-5xl">
+                    Your support operations command center.
                 </h1>
-
-                <p className="mt-4 text-xl text-slate-400">
-                    AI-Powered Obsidian Knowledge Platform
+                <p className="mt-4 text-lg text-muted-foreground">
+                    Launch into the dashboard to explore the new responsive shell and workspace views.
                 </p>
-
-                <div className="mt-8 flex justify-center gap-4">
-                    <a
-                        href="/dashboard"
-                        className="rounded-lg bg-blue-600 px-6 py-3 hover:bg-blue-700"
-                    >
-                        Dashboard
-                    </a>
-
-                    <a
-                        href="/knowledge"
-                        className="rounded-lg border border-slate-700 px-6 py-3 hover:bg-slate-800"
-                    >
-                        Knowledge Base
-                    </a>
+                <div className="mt-8 flex flex-wrap justify-center gap-3">
+                    <Button asChild>
+                        <Link href="/dashboard">Open dashboard</Link>
+                    </Button>
+                    <Button variant="outline" asChild>
+                        <Link href="/knowledge">Visit knowledge</Link>
+                    </Button>
                 </div>
             </div>
         </main>
-    )
+    );
 }

@@ -1,7 +1,10 @@
+import { AppShell } from "@/components/layout/app-shell";
+import { DashboardGrid } from "@/components/dashboard/dashboard-grid";
+
 export default function Page() {
     return (
-        <main className="p-10">
-            <h1 className="text-4xl font-bold">Dashboard</h1>
-        </main>
-    )
+        <AppShell>
+            <DashboardGrid />
+        </AppShell>
+    );
 }
