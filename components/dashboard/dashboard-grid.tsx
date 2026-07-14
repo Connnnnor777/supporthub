@@ -1,4 +1,14 @@
-import { Bot, Clock3, Package2, Sparkles, Users2 } from "lucide-react";
+"use client";
+
+import { useEffect, useState } from "react";
+import Link from "next/link";
+import {
+    Bot,
+    Clock3,
+    Package2,
+    Sparkles,
+    Users2,
+} from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -9,18 +19,52 @@ import {
     CardTitle,
 } from "@/components/ui/card";
 
+type VaultNote = {
+    title: string;
+    path: string;
+    folder: string;
+    modified: string;
+};
+
 export function DashboardGrid() {
+    const [notes, setNotes] = useState<VaultNote[]>([]);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        async function loadNotes() {
+            try {
+                const response = await fetch("/api/vault");
+                const data = await response.json();
+
+                setNotes(data.notes ?? []);
+            } catch (error) {
+                console.error("Failed to load vault:", error);
+            } finally {
+                setLoading(false);
+            }
+        }
+
+        loadNotes();
+    }, []);
+
     return (
         <div className="space-y-6">
             <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
                 <div>
-                    <p className="text-sm font-medium text-primary">Operations overview</p>
-                    <h1 className="text-3xl font-semibold tracking-tight">SupportHub dashboard</h1>
+                    <p className="text-sm font-medium text-primary">
+                        Operations Overview
+                    </p>
+
+                    <h1 className="text-3xl font-semibold tracking-tight">
+                        SupportHub Dashboard
+                    </h1>
+
                     <p className="mt-1 text-sm text-muted-foreground">
-                        Bring product, customer, and knowledge context into one workspace.
+                        Your live support knowledge base.
                     </p>
                 </div>
-                <Button>New case</Button>
+
+                <Button>New Case</Button>
             </div>
 
             <div className="grid gap-4 xl:grid-cols-[1.4fr_0.8fr]">
@@ -30,20 +74,27 @@ export function DashboardGrid() {
                             <Sparkles className="size-4 text-primary" />
                             Quick Actions
                         </CardTitle>
-                        <CardDescription>Jump into the most common support workflows.</CardDescription>
+
+                        <CardDescription>
+                            Jump into common workflows.
+                        </CardDescription>
                     </CardHeader>
+
                     <CardContent className="grid gap-3 sm:grid-cols-2">
                         <Button variant="outline" className="justify-start">
-                            Review new tickets
+                            Review Tickets
                         </Button>
+
                         <Button variant="outline" className="justify-start">
-                            Share knowledge update
+                            Search Knowledge
                         </Button>
+
                         <Button variant="outline" className="justify-start">
-                            Draft SOP summary
+                            Create SOP
                         </Button>
+
                         <Button variant="outline" className="justify-start">
-                            Sync product notes
+                            New Customer
                         </Button>
                     </CardContent>
                 </Card>
@@ -54,13 +105,23 @@ export function DashboardGrid() {
                             <Bot className="size-4 text-primary" />
                             AI Assistant
                         </CardTitle>
-                        <CardDescription>Ask for a summary or next best action.</CardDescription>
+
+                        <CardDescription>
+                            Ask questions about your vault.
+                        </CardDescription>
                     </CardHeader>
+
                     <CardContent className="space-y-3">
-                        <p className="rounded-lg border border-dashed border-border/70 bg-muted/40 p-3 text-sm text-muted-foreground">
-                            “Summarize the latest customer escalation and suggest follow-up steps.”
+                        <p className="rounded-lg border border-dashed p-3 text-sm text-muted-foreground">
+                            Ask things like:
+                            <br />
+                            <br />
+                            "How do I configure an EVO Omni?"
                         </p>
-                        <Button className="w-full">Open assistant</Button>
+
+                        <Button className="w-full">
+                            Open Assistant
+                        </Button>
                     </CardContent>
                 </Card>
             </div>
@@ -72,17 +133,36 @@ export function DashboardGrid() {
                             <Clock3 className="size-4 text-primary" />
                             Recent Notes
                         </CardTitle>
-                        <CardDescription>Latest updates across the support hub.</CardDescription>
+
+                        <CardDescription>
+                            Live from your Obsidian vault
+                        </CardDescription>
                     </CardHeader>
-                    <CardContent className="space-y-3 text-sm text-muted-foreground">
-                        <div className="rounded-lg border border-border/70 bg-muted/30 p-3">
-                            <p className="font-medium text-foreground">Escalation brief</p>
-                            <p>Updated 12 minutes ago by Maya</p>
-                        </div>
-                        <div className="rounded-lg border border-border/70 bg-muted/30 p-3">
-                            <p className="font-medium text-foreground">Release rollout checklist</p>
-                            <p>Synced to SOPs this morning</p>
-                        </div>
+
+                    <CardContent>
+                        {loading ? (
+                            <p className="text-sm text-muted-foreground">
+                                Loading...
+                            </p>
+                        ) : (
+                            <div className="space-y-3">
+                                {notes.slice(0, 5).map((note) => (
+                                    <Link
+                                        key={note.path}
+                                        href="#"
+                                        className="block rounded-lg border p-3 hover:bg-muted transition"
+                                    >
+                                        <p className="font-medium">
+                                            {note.title}
+                                        </p>
+
+                                        <p className="text-xs text-muted-foreground">
+                                            {note.folder}
+                                        </p>
+                                    </Link>
+                                ))}
+                            </div>
+                        )}
                     </CardContent>
                 </Card>
 
@@ -92,17 +172,17 @@ export function DashboardGrid() {
                             <Package2 className="size-4 text-primary" />
                             Products
                         </CardTitle>
-                        <CardDescription>High-priority products and active initiatives.</CardDescription>
+
+                        <CardDescription>
+                            Product knowledge coming soon
+                        </CardDescription>
                     </CardHeader>
-                    <CardContent className="space-y-3 text-sm text-muted-foreground">
-                        <div className="flex items-center justify-between rounded-lg border border-border/70 bg-muted/30 p-3">
-                            <span className="font-medium text-foreground">Atlas Pro</span>
-                            <span>3 open issues</span>
-                        </div>
-                        <div className="flex items-center justify-between rounded-lg border border-border/70 bg-muted/30 p-3">
-                            <span className="font-medium text-foreground">Signal AI</span>
-                            <span>2 pending notes</span>
-                        </div>
+
+                    <CardContent>
+                        <p className="text-sm text-muted-foreground">
+                            This panel will automatically summarize devices,
+                            firmware, drivers, and known issues from your vault.
+                        </p>
                     </CardContent>
                 </Card>
 
@@ -112,17 +192,17 @@ export function DashboardGrid() {
                             <Users2 className="size-4 text-primary" />
                             Customers
                         </CardTitle>
-                        <CardDescription>Priority accounts that need attention.</CardDescription>
+
+                        <CardDescription>
+                            Customer workspace coming soon
+                        </CardDescription>
                     </CardHeader>
-                    <CardContent className="space-y-3 text-sm text-muted-foreground">
-                        <div className="flex items-center justify-between rounded-lg border border-border/70 bg-muted/30 p-3">
-                            <span className="font-medium text-foreground">Northwind Labs</span>
-                            <span>Escalation</span>
-                        </div>
-                        <div className="flex items-center justify-between rounded-lg border border-border/70 bg-muted/30 p-3">
-                            <span className="font-medium text-foreground">Brightline</span>
-                            <span>Renewal review</span>
-                        </div>
+
+                    <CardContent>
+                        <p className="text-sm text-muted-foreground">
+                            Customer notes, Salesforce history, RMAs,
+                            warranties, and cases will appear here.
+                        </p>
                     </CardContent>
                 </Card>
             </div>

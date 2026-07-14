@@ -6,7 +6,6 @@ export const vaultConfig = {
     ".github",
     ".next",
     ".obsidian",
-    "node_modules",
-    "supporthub",
-  ],
+    "node_modules"
+  ]
 }
