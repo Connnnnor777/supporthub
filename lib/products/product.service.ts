@@ -1,4 +1,7 @@
+import { getEntities } from "@/lib/entities";
+
 import { buildProductWorkspace } from "./product-builder";
+import { mapEntityToProductWorkspace } from "./product-entity-adapter";
 import type { ProductSummary, ProductWorkspace } from "./product.types";
 
 let cachedProducts: ProductWorkspace[] | null = null;
@@ -9,7 +12,9 @@ export async function getProducts(): Promise<ProductWorkspace[]> {
         return cachedProducts;
     }
 
-    const products = await buildProductWorkspace();
+    const entities = await getEntities("product");
+    const fallbackProducts = await buildProductWorkspace();
+    const products = entities.length > 0 ? entities.map(mapEntityToProductWorkspace) : fallbackProducts;
     cachedProducts = products;
     return products;
 }

@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { FileText } from "lucide-react";
 
 import { Card, CardContent } from "@/components/ui/card";
@@ -19,27 +20,33 @@ export function SearchResultCard({
   const modified = dateFormatter.format(new Date(result.modified));
   const folder = result.folder === "." ? "Root" : result.folder;
 
+  const href = result.title.toLowerCase().includes("product") || result.path.toLowerCase().includes("product")
+    ? `/products/${result.title.toLowerCase().replace(/\s+/g, "-")}`
+    : `/knowledge`;
+
   return (
-    <Card className="hover:border-primary transition-colors">
-      <CardContent className="p-4">
-        <div className="flex items-start gap-3">
-          <FileText className="mt-1 h-4 w-4 text-muted-foreground" />
+    <Link href={href} className="block">
+      <Card className="hover:border-primary transition-colors">
+        <CardContent className="p-4">
+          <div className="flex items-start gap-3">
+            <FileText className="mt-1 h-4 w-4 text-muted-foreground" />
 
-          <div className="min-w-0 flex-1">
-            <h3 className="truncate font-medium">
-              {result.title}
-            </h3>
+            <div className="min-w-0 flex-1">
+              <h3 className="truncate font-medium">
+                {result.title}
+              </h3>
 
-            <p className="truncate text-sm text-muted-foreground">
-              {folder}
-            </p>
+              <p className="truncate text-sm text-muted-foreground">
+                {folder}
+              </p>
 
-            <p className="mt-2 text-xs text-muted-foreground">
-              Updated {modified}
-            </p>
+              <p className="mt-2 text-xs text-muted-foreground">
+                Updated {modified}
+              </p>
+            </div>
           </div>
-        </div>
-      </CardContent>
-    </Card>
+        </CardContent>
+      </Card>
+    </Link>
   );
 }

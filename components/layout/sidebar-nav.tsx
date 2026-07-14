@@ -11,6 +11,7 @@ import {
     Settings2,
     ShieldCheck,
     Users,
+    Boxes,
 } from "lucide-react";
 
 import { cn } from "@/lib/utils";
@@ -24,6 +25,7 @@ type NavItem = {
 const navigation: NavItem[] = [
     { title: "Dashboard", href: "/dashboard", icon: LayoutDashboard },
     { title: "Products", href: "/products", icon: Package },
+    { title: "Entities", href: "/entities", icon: Boxes },
     { title: "Customers", href: "/customers", icon: Users },
     { title: "Knowledge", href: "/knowledge", icon: Brain },
     { title: "Search", href: "/search", icon: Search },

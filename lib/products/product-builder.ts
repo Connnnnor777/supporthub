@@ -93,39 +93,55 @@ export async function buildProductWorkspace(): Promise<ProductWorkspace[]> {
             .filter((candidate) => candidate.title.toLowerCase() !== primaryDocument.title.toLowerCase())
             .slice(0, 6);
 
+        const tags = new Set<string>();
+
+        primaryDocument.tags?.forEach((tag) => {
+            tags.add(String(tag));
+        });
+
+        const fmTags = primaryDocument.frontmatter?.tags;
+
+        if (Array.isArray(fmTags)) {
+            fmTags.forEach((tag) => tags.add(String(tag)));
+        } else if (typeof fmTags === "string") {
+            tags.add(fmTags);
+        }
+
+        const productTags = [...tags];
+
         const workspace: ProductWorkspace = {
             id: productName.replace(/\s+/g, "-").toLowerCase(),
             name: inferProductName(primaryDocument),
             manufacturer: pickManufacturer(primaryDocument),
             category: pickCategory(primaryDocument),
-            tags: Array.from(new Set([...(primaryDocument.tags ?? []), ...(primaryDocument.frontmatter.tags ? [String(primaryDocument.frontmatter.tags)] : [])]))),
-        aliases: Array.from(new Set([productName, ...(primaryDocument.aliases ?? [])])),
+            tags: productTags,
+            aliases: Array.from(new Set([productName, ...(primaryDocument.aliases ?? [])])),
             overview: pickOverview(primaryDocument),
-                drivers: documentsForProduct.filter((document) => classifyDocument(document) === "drivers"),
-                    firmware: documentsForProduct.filter((document) => classifyDocument(document) === "firmware"),
-                        warranty: documentsForProduct.filter((document) => classifyDocument(document) === "warranty"),
-                            installGuides: documentsForProduct.filter((document) => classifyDocument(document) === "installGuides"),
-                                troubleshooting: documentsForProduct.filter((document) => classifyDocument(document) === "troubleshooting"),
-                                    relatedProducts: documentsForProduct.filter((document) => containsProductReference(document, productName)),
-                                        relatedDevices: [],
-                                            relatedCustomers: [],
-                                                relatedRMAs: [],
-                                                    relatedDocuments: documentsForProduct.filter((document) => document.path !== primaryDocument.path),
-                                                        graphNeighbors: related.map((candidate) => ({
-                                                            title: candidate.title,
-                                                            path: candidate.path,
-                                                            folder: candidate.folder,
-                                                            modified: primaryDocument.modified,
-                                                            frontmatter: {},
-                                                            headings: [],
-                                                            tags: candidate.tags,
-                                                            links: [],
-                                                            aliases: [],
-                                                            content: "",
-                                                        })),
-                                                            activity: [],
+            drivers: documentsForProduct.filter((document) => classifyDocument(document) === "drivers"),
+            firmware: documentsForProduct.filter((document) => classifyDocument(document) === "firmware"),
+            warranty: documentsForProduct.filter((document) => classifyDocument(document) === "warranty"),
+            installGuides: documentsForProduct.filter((document) => classifyDocument(document) === "installGuides"),
+            troubleshooting: documentsForProduct.filter((document) => classifyDocument(document) === "troubleshooting"),
+            relatedProducts: documentsForProduct.filter((document) => containsProductReference(document, productName)),
+            relatedDevices: [],
+            relatedCustomers: [],
+            relatedRMAs: [],
+            relatedDocuments: documentsForProduct.filter((document) => document.path !== primaryDocument.path),
+            graphNeighbors: related.map((candidate) => ({
+                title: candidate.title,
+                path: candidate.path,
+                folder: candidate.folder,
+                modified: primaryDocument.modified,
+                frontmatter: {},
+                headings: [],
+                tags: candidate.tags,
+                links: [],
+                aliases: [],
+                content: "",
+            })),
+            activity: [],
         };
 
-return workspace;
+        return workspace;
     });
 }
