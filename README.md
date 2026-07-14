@@ -1,27 +1,39 @@
 # SupportHub
 
-## Pages
+SupportHub is an internal knowledge platform built with Next.js, TypeScript, Tailwind CSS, and shadcn/ui.
 
-/dashboard
+It uses an Obsidian vault as its primary knowledge source.
 
-/products
+## Current Version
 
-/customers
+v0.2.5
 
-/knowledge
+## Project Goals
 
-/sops
+- Centralize support knowledge
+- Search products, SOPs, customers, and documentation
+- Integrate with AI
+- Build a searchable operational knowledge base
+- Support Salesforce and SAP workflows
 
-/reports
+## Technology
 
-/settings
+- Next.js
+- React
+- TypeScript
+- Tailwind CSS
+- shadcn/ui
+- Obsidian
 
-## Next Step
+## Project Structure
 
-Build the application shell:
+app/
+components/
+lib/
+docs/
+scripts/
 
-- Sidebar
-- Header
-- Search
-- Dashboard Widgets
-- Obsidian Vault Indexer
+## Status
+
+Feature Pack 002.5
+Engineering Foundation
