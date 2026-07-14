@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "test": "node --test --experimental-strip-types ./lib/vault/parser.test.ts ./tests/graph/knowledge-graph.test.ts",
+    "test": "node --test --experimental-strip-types ./lib/vault/parser.test.ts ./tests/vault/vault.service.test.ts ./tests/graph/knowledge-graph.test.ts",
     "typecheck": "tsc --noEmit --incremental false"
   },
   "dependencies": {

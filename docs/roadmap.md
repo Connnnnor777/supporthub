@@ -2,35 +2,50 @@
 
 ## v0.1
 
-- Application Shell
+- Application shell
 - Sidebar
 - Header
 - Dashboard
 
 ## v0.2
 
-- Obsidian Indexer
+- Obsidian vault integration
+- Knowledge index
+- Vault manager
 
 ## v0.3
 
-- Search
+- Search engine
+- Knowledge graph
+- Markdown intelligence
 
 ## v0.4
 
-- AI Assistant
+- SupportHub Workspace
+- Home
+- Search
+- Products
+- Customers
+- Knowledge
+- Devices
+- RMAs
+- Warranty
+- Analytics
+- Settings
 
 ## v0.5
 
-- Products
+- Product Workspace
+- Dynamic product views driven by the knowledge engine
 
 ## v0.6
 
-- Customers
+- Customer workspace experiences
 
 ## v0.7
 
-- SOP Library
+- Operations workspace experiences
 
 ## v0.8
 
-- Reports
+- AI-assisted workflows grounded in the platform

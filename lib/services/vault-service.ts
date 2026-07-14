@@ -1,15 +1,18 @@
-import { indexVault } from "@/lib/vault/indexer";
+import { createVaultService } from "@/lib/vault/vault.service"
+
+const service = createVaultService()
 
 export async function getVaultNotes() {
-  return indexVault();
+  const result = await service.refresh()
+  return result.documents
 }
 
 export async function getRecentNotes(limit = 5) {
-  const notes = indexVault();
-
-  return notes.slice(0, limit);
+  const result = await service.refresh()
+  return result.documents.slice(0, limit)
 }
 
 export async function getNoteCount() {
-  return indexVault().length;
+  const result = await service.refresh()
+  return result.documents.length
 }

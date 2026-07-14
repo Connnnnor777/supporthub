@@ -1,43 +1,62 @@
 # SupportHub Roadmap
 
-## Completed
+## Milestone 1 — Knowledge Foundation
 
-- Feature Pack 001
-  - Application scaffold
-  - Dashboard
-  - Layout
+Completed
 
-- Feature Pack 002
-  - Vault indexing
-  - Vault API
-  - Vault service
-  - Live dashboard
+- Application scaffold
+- Dashboard
+- Vault indexing
+- Vault API
+- Vault service
+- Live dashboard
+- Search engine
+- Markdown intelligence
+- Knowledge graph
+- Knowledge index
+- Vault manager
 
-## Current
+## Milestone 2 — SupportHub Workspace
 
-Feature Pack 002.5
+Next
 
-Engineering Foundation
+- Workspace shell
+- Home
+- Search
+- Products
+- Customers
+- Knowledge
+- Devices
+- RMAs
+- Warranty
+- Analytics
+- Settings
 
-## Next
+This milestone shifts SupportHub from a search-driven experience to a true application workspace built on the knowledge engine.
 
-Feature Pack 003
+## Milestone 3 — Product Workspace
 
-Global Search
+Planned
 
-## Future
+- Every product becomes a workspace automatically
+- Overview
+- Knowledge
+- Drivers
+- Firmware
+- Warranty
+- Known issues
+- Related devices
+- Related SOPs
+- Related RMAs
+- Related customers
+- Related notes
+- Graph
+- Timeline
 
-Feature Pack 004
-Markdown Intelligence
+All views are generated from the knowledge engine rather than hardcoded UI.
 
-Feature Pack 005
-Knowledge Graph
+## Future Direction
 
-Feature Pack 006
-AI Assistant
-
-Feature Pack 007
-Customer Workspace
-
-Feature Pack 008
-Product Intelligence
+- Customer workspace experiences
+- Operations workspace experiences
+- AI-assisted workflows grounded in the knowledge platform
