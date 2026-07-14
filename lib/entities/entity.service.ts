@@ -1,8 +1,8 @@
 import { cache } from "react";
 
-import { buildEntities, buildEntity, createDefaultEntityDefinitions } from "./entity-builder";
-import { getEntityType, listEntityTypes } from "./entity-registry";
-import type { Entity } from "./entity.types";
+import { buildEntities, buildEntity, createDefaultEntityDefinitions } from "./entity-builder.ts";
+import { getEntityType, listEntityTypes, registerEntityType } from "./entity-registry.ts";
+import type { Entity } from "./entity.types.ts";
 
 const registerDefaults = (() => {
     let initialized = false;
@@ -16,7 +16,6 @@ const registerDefaults = (() => {
         for (const definition of createDefaultEntityDefinitions()) {
             const existing = getEntityType(definition.type);
             if (!existing) {
-                const { registerEntityType } = require("./entity-registry") as typeof import("./entity-registry");
                 registerEntityType(definition);
             }
         }

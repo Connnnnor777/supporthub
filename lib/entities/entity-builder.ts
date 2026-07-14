@@ -1,9 +1,9 @@
-import { buildKnowledgeGraph, getRelatedNotes } from "../knowledge-graph/index.ts";
+import { buildKnowledgeGraph } from "../knowledge-graph/graph.service.ts";
 import { getVaultNotes } from "../services/vault-service.ts";
 import type { KnowledgeDocument } from "../vault/types.ts";
 
-import { getEntityType } from "./entity-registry";
-import type { Entity, EntityTypeDefinition } from "./entity.types";
+import { getEntityType } from "./entity-registry.ts";
+import type { Entity, EntityTypeDefinition } from "./entity.types.ts";
 
 const PRODUCT_ENTITY_TYPE = "product";
 

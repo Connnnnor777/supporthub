@@ -1,6 +1,6 @@
 import { Clock3, Sparkles } from "lucide-react";
 
-type ActivityFeedItem = {
+export type ActivityItem = {
     title: string;
     description: string;
     timestamp: string;
