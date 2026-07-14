@@ -1,7 +1,10 @@
+import { WorkspaceLayout } from "@/components/workspace/workspace-layout";
+import { SettingsPageShell } from "@/components/settings/settings-page-shell";
+
 export default function Page() {
     return (
-        <main className="p-10">
-            <h1 className="text-4xl font-bold">Settings</h1>
-        </main>
-    )
+        <WorkspaceLayout title="Settings" description="Configure the SupportHub experience" compact={false}>
+            <SettingsPageShell />
+        </WorkspaceLayout>
+    );
 }
