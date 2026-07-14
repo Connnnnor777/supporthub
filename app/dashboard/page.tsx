@@ -1,10 +1,5 @@
-import { AppShell } from "@/components/layout/app-shell";
-import { DashboardGrid } from "@/components/dashboard/dashboard-grid";
+import HomeWorkspacePage from "@/app/home/page";
 
 export default function Page() {
-    return (
-        <AppShell>
-            <DashboardGrid />
-        </AppShell>
-    );
+    return <HomeWorkspacePage />;
 }
