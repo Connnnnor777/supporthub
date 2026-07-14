@@ -10,9 +10,23 @@ Returns
 - Note metadata
 - Recent vault information
 
-Future Endpoints
+## GET /api/search
 
-GET /api/search
+Returns ranked search results from the parsed knowledge index.
+
+## GET /api/graph
+
+Returns knowledge graph nodes and edges.
+
+## GET /api/graph/related?q=<path>
+
+Returns related notes ranked by shared wiki links, tags, aliases, headings, and direct relationships.
+
+## GET /api/graph/backlinks?q=<path>
+
+Returns notes that link to the requested note.
+
+Future Endpoints
 
 GET /api/products
 

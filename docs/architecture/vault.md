@@ -9,13 +9,16 @@ Current Features
 - Recursive indexing
 - Markdown discovery
 - Note metadata
+- Frontmatter parsing
+- Heading parsing
+- Tag parsing
+- Alias parsing
+- Wiki link parsing
+- Knowledge graph backlinks
+- Related-note graph ranking
 
 Future Features
 
-- Frontmatter
-- Tags
-- Wiki Links
 - Attachments
-- Backlinks
 - File watcher
 - Full-text indexing

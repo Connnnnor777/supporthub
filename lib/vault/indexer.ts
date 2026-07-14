@@ -2,6 +2,7 @@ import fs from "node:fs"
 import path from "node:path"
 
 import { vaultConfig } from "./config"
+import { parseKnowledgeMarkdown } from "./parser"
 import { VaultNote } from "./types"
 
 function scanDirectory(
@@ -34,6 +35,8 @@ function scanDirectory(
         }
 
         const stats = fs.statSync(fullPath)
+        const content = fs.readFileSync(fullPath, "utf8")
+        const parsed = parseKnowledgeMarkdown(content)
 
         results.push({
 
@@ -46,6 +49,8 @@ function scanDirectory(
             ),
 
             modified: stats.mtime.toISOString(),
+
+            ...parsed,
 
         })
 

@@ -5,9 +5,9 @@ import { usePathname } from "next/navigation";
 import {
     BarChart3,
     Brain,
-    CircleHelp,
     LayoutDashboard,
     Package,
+    Search,
     Settings2,
     ShieldCheck,
     Users,
@@ -26,6 +26,7 @@ const navigation: NavItem[] = [
     { title: "Products", href: "/products", icon: Package },
     { title: "Customers", href: "/customers", icon: Users },
     { title: "Knowledge", href: "/knowledge", icon: Brain },
+    { title: "Search", href: "/search", icon: Search },
     { title: "SOPs", href: "/sops", icon: ShieldCheck },
     { title: "Reports", href: "/reports", icon: BarChart3 },
     { title: "Settings", href: "/settings", icon: Settings2 },
