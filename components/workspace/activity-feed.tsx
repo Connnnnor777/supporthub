@@ -8,10 +8,10 @@ export type ActivityItem = {
 };
 
 type ActivityFeedProps = {
-    items: ActivityFeedItem[];
+    items: ActivityItem[];
 };
 
-const statusClasses = {
+const statusClasses: Record<NonNullable<ActivityItem["status"]>, string> = {
     neutral: "border-border/70 bg-background/70",
     success: "border-emerald-500/30 bg-emerald-500/10",
     warning: "border-amber-500/30 bg-amber-500/10",

@@ -1,3 +1,4 @@
+import { CommandPalette } from "@/components/command/command-palette";
 import { SidebarNav } from "@/components/layout/sidebar-nav";
 import { TopHeader } from "@/components/layout/top-header";
 
@@ -25,6 +26,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
                     <main className="flex-1 p-4 sm:p-6 lg:p-8">{children}</main>
                 </div>
             </div>
+            <CommandPalette />
         </div>
     );
 }
